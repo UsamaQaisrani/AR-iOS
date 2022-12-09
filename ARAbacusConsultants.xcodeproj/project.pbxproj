@@ -13,9 +13,11 @@
 		028B56B52941FDD800985279 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 028B56B32941FDD800985279 /* Main.storyboard */; };
 		028B56B72941FDD900985279 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 028B56B62941FDD900985279 /* Assets.xcassets */; };
 		028B56BA2941FDD900985279 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 028B56B82941FDD900985279 /* LaunchScreen.storyboard */; };
+		7C6A71B52671C8D511B7B994 /* Pods_ARAbacusConsultants.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD6CC45BC2DB0C4445E14E56 /* Pods_ARAbacusConsultants.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		010E3D58CE74E3E9A26EBC2A /* Pods-ARAbacusConsultants.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARAbacusConsultants.debug.xcconfig"; path = "Target Support Files/Pods-ARAbacusConsultants/Pods-ARAbacusConsultants.debug.xcconfig"; sourceTree = "<group>"; };
 		028B56AA2941FDD800985279 /* ARAbacusConsultants.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARAbacusConsultants.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		028B56AD2941FDD800985279 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		028B56AF2941FDD800985279 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -23,6 +25,8 @@
 		028B56B42941FDD800985279 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		028B56B62941FDD900985279 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		028B56B92941FDD900985279 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		16837A4AFCFF116898C613C8 /* Pods-ARAbacusConsultants.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARAbacusConsultants.release.xcconfig"; path = "Target Support Files/Pods-ARAbacusConsultants/Pods-ARAbacusConsultants.release.xcconfig"; sourceTree = "<group>"; };
+		FD6CC45BC2DB0C4445E14E56 /* Pods_ARAbacusConsultants.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARAbacusConsultants.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,17 +34,54 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C6A71B52671C8D511B7B994 /* Pods_ARAbacusConsultants.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		027129ED29431739007DC4B8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				028B56B62941FDD900985279 /* Assets.xcassets */,
+				028B56AF2941FDD800985279 /* art.scnassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		027129EE29431742007DC4B8 /* App Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				028B56AD2941FDD800985279 /* AppDelegate.swift */,
+			);
+			path = "App Delegates";
+			sourceTree = "<group>";
+		};
+		027129EF29431752007DC4B8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				028B56B32941FDD800985279 /* Main.storyboard */,
+				028B56B82941FDD900985279 /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		027129F02943175E007DC4B8 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				028B56B12941FDD800985279 /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		028B56A12941FDD800985279 = {
 			isa = PBXGroup;
 			children = (
 				028B56AC2941FDD800985279 /* ARAbacusConsultants */,
 				028B56AB2941FDD800985279 /* Products */,
+				1C7EA82F5F3F2FECBD82A9C1 /* Pods */,
+				DD63DE7D4FAEEAB9CCF023DC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,14 +96,30 @@
 		028B56AC2941FDD800985279 /* ARAbacusConsultants */ = {
 			isa = PBXGroup;
 			children = (
-				028B56AD2941FDD800985279 /* AppDelegate.swift */,
-				028B56AF2941FDD800985279 /* art.scnassets */,
-				028B56B12941FDD800985279 /* ViewController.swift */,
-				028B56B32941FDD800985279 /* Main.storyboard */,
-				028B56B62941FDD900985279 /* Assets.xcassets */,
-				028B56B82941FDD900985279 /* LaunchScreen.storyboard */,
+				027129F02943175E007DC4B8 /* Controllers */,
+				027129EF29431752007DC4B8 /* Views */,
+				027129EE29431742007DC4B8 /* App Delegates */,
+				027129ED29431739007DC4B8 /* Resources */,
 			);
 			path = ARAbacusConsultants;
+			sourceTree = "<group>";
+		};
+		1C7EA82F5F3F2FECBD82A9C1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				010E3D58CE74E3E9A26EBC2A /* Pods-ARAbacusConsultants.debug.xcconfig */,
+				16837A4AFCFF116898C613C8 /* Pods-ARAbacusConsultants.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		DD63DE7D4FAEEAB9CCF023DC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FD6CC45BC2DB0C4445E14E56 /* Pods_ARAbacusConsultants.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -72,6 +129,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 028B56BD2941FDD900985279 /* Build configuration list for PBXNativeTarget "ARAbacusConsultants" */;
 			buildPhases = (
+				B449547FCBE45761E24814C0 /* [CP] Check Pods Manifest.lock */,
 				028B56A62941FDD800985279 /* Sources */,
 				028B56A72941FDD800985279 /* Frameworks */,
 				028B56A82941FDD800985279 /* Resources */,
@@ -131,6 +189,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B449547FCBE45761E24814C0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ARAbacusConsultants-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		028B56A62941FDD800985279 /* Sources */ = {
@@ -280,6 +363,7 @@
 		};
 		028B56BE2941FDD900985279 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 010E3D58CE74E3E9A26EBC2A /* Pods-ARAbacusConsultants.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -310,6 +394,7 @@
 		};
 		028B56BF2941FDD900985279 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 16837A4AFCFF116898C613C8 /* Pods-ARAbacusConsultants.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
