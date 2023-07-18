@@ -9,66 +9,162 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+enum Status: String {
+    case finding = "Finding surface"
+    case found = "Surface found"
+    case notFound = "No surface found"
+    case placed = "Experience started"
+}
 
-    @IBOutlet var sceneView: ARSCNView!
+class ViewController: BaseViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Set the view's delegate
-        sceneView.delegate = self
-        
-        // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
-        
-        // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
-        
-        // Set the scene to the view
-        sceneView.scene = scene
+    //MARK: Class Properties
+    var screenCenter: CGPoint!
+    var focusSquare: FocusSquare?
+    let coachingOverlay = ARCoachingOverlayView()
+    var wTransform: simd_float4x4!
+    var status: Status = .finding {
+        didSet {
+            statusLabel.text = status.rawValue
+        }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // Create a session configuration
-        let configuration = ARWorldTrackingConfiguration()
-
-        // Run the view's session
-        sceneView.session.run(configuration)
+    ///SCNNodes
+    var startButtonNode: SCNNode = SCNNode()
+    var buildingNode: SCNNode = SCNNode()
+    var listPlaceHolderNode: SCNNode = SCNNode()
+    
+    //MARK: IBOutlets
+    @IBOutlet var sceneView: ARSCNView!
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var restartExperienceButton: UIButton!
+    @IBOutlet weak var statusView: UIView!
+    @IBOutlet weak var statusBar: UIView!
+    
+    //MARK: Base Methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        initialSetup()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        // Pause the view's session
         sceneView.session.pause()
-    }
+    }    
+}
 
-    // MARK: - ARSCNViewDelegate
-    
-/*
-    // Override to create and configure nodes for anchors added to the view's session.
-    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        let node = SCNNode()
-     
-        return node
-    }
-*/
-    
-    func session(_ session: ARSession, didFailWithError error: Error) {
-        // Present an error message to the user
+
+//MARK: Class Methods
+extension ViewController {
+    fileprivate func initialSetup() {
+        setupSceneView()
+        setupCoachingOverlay()
+        screenCenter = view.center
         
+        statusView.layer.cornerRadius = 5
+        statusView.layer.opacity = 0.8
     }
     
-    func sessionWasInterrupted(_ session: ARSession) {
-        // Inform the user that the session has been interrupted, for example, by presenting an overlay
-        
+    func setupSceneView() {
+        sceneView.delegate = self
+        let configuration = ARWorldTrackingConfiguration()
+        configuration.planeDetection = .horizontal
+        sceneView.session.run(configuration)
     }
     
-    func sessionInterruptionEnded(_ session: ARSession) {
-        // Reset tracking and/or remove existing anchors if consistent tracking is required
+    func updateFocusSquare() {
+        guard let localFocusSquare = focusSquare else { return }
+        let hitTest = sceneView.hitTest(screenCenter, types: .existingPlaneUsingExtent)
         
+        if let hitTestResult = hitTest.first {
+            status = .found
+            focusSquare?.isHidden = false
+        }
+        else {
+            status = .finding
+            focusSquare?.isHidden = true
+        }
+    }    
+}
+
+//MARK: IBActions
+extension ViewController {
+    @IBAction func restartExperienceButtonAction(_ sender: Any) {
+        buildingNode.removeFromParentNode()
+        sceneView.scene.rootNode.addChildNode(focusSquare!)
+        status = .finding
+        statusView.isHidden = false
+    }
+}
+
+//MARK: SceneView Delegate
+extension ViewController: ARSCNViewDelegate {
+    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+        guard let localFocusSquare = focusSquare else { return  }
+        let hitTest = sceneView.hitTest(screenCenter, types: .existingPlane)
+        let hitTestResult = hitTest.first
+        guard let worldTransform = hitTestResult?.worldTransform else { return }
+        let worldTransformColumn3 = worldTransform.columns.3
+        wTransform = worldTransform
+        localFocusSquare.position = SCNVector3(worldTransformColumn3.x, worldTransformColumn3.y, worldTransformColumn3.z)
+        DispatchQueue.main.async {
+            self.updateFocusSquare()
+        }
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        
+        //Adding Focus Square To Scene
+        guard focusSquare == nil else { return }
+        let localFocusSquare = FocusSquare()
+        self.sceneView.scene.rootNode.addChildNode(localFocusSquare)
+        self.focusSquare = localFocusSquare
+        
+        //Adding Start Button On Top Of Focus Square
+        startButtonNode = focusSquare!.place(node: Nodes.shared.startButtonNode, in: sceneView)
+    }
+}
+
+//MARK: ARCoachingOverlayViewDelegate
+extension ViewController: ARCoachingOverlayViewDelegate {
+    func setupCoachingOverlay() {
+        // Set up coaching view
+        coachingOverlay.session = sceneView.session
+        coachingOverlay.delegate = self
+        
+        coachingOverlay.translatesAutoresizingMaskIntoConstraints = false
+        sceneView.addSubview(coachingOverlay)
+        
+        NSLayoutConstraint.activate([
+            coachingOverlay.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            coachingOverlay.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            coachingOverlay.widthAnchor.constraint(equalTo: view.widthAnchor),
+            coachingOverlay.heightAnchor.constraint(equalTo: view.heightAnchor)
+        ])
+        
+        setActivatesAutomatically()
+        setGoal()
+    }
+    
+    func setActivatesAutomatically() {
+        coachingOverlay.activatesAutomatically = true
+    }
+    
+    func setGoal() {
+        coachingOverlay.goal = .horizontalPlane
+    }
+    
+    func coachingOverlayViewWillActivate(_ coachingOverlayView: ARCoachingOverlayView) {
+        DispatchQueue.main.async {
+            self.focusSquare?.isHidden = true
+            self.status = .notFound
+        }
+    }
+    
+    func coachingOverlayViewDidDeactivate(_ coachingOverlayView: ARCoachingOverlayView) {
+        DispatchQueue.main.async {
+            self.focusSquare?.isHidden = false
+            self.status = .finding
+        }
     }
 }

@@ -1,3 +1,20 @@
-PODFILE CHECKSUM: 04ec94f349aea3567fe2889a97bbf34b1dd13fc7
+PODS:
+  - FocusNode (2.0.2):
+    - SmartHitTest (~> 2.0)
+  - SmartHitTest (2.0.0)
+
+DEPENDENCIES:
+  - FocusNode
+
+SPEC REPOS:
+  trunk:
+    - FocusNode
+    - SmartHitTest
+
+SPEC CHECKSUMS:
+  FocusNode: 7d25505469a88840090bfbc96d67cfcf2d525868
+  SmartHitTest: 1f203b85c50d571ae194917e93f2d5dfc79b51c0
+
+PODFILE CHECKSUM: 44a4f2c14c255ba48d70b147479496ca399e0e0f
 
 COCOAPODS: 1.11.3

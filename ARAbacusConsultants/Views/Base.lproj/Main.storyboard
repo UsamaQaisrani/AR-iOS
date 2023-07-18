@@ -1,37 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BV1-FR-VrT" customClass="ViewController" customModule="ARAbacusConsultants" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U0K-SW-4ec">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BrB-h1-WRS">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </arscnView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BuI-7f-zWl">
+                                <rect key="frame" x="0.0" y="44" width="414" height="65"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Ma-Y5-fHQ">
+                                        <rect key="frame" x="10" y="10" width="140" height="45"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Finding Surface" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ghc-ir-K17">
+                                                <rect key="frame" x="10" y="5" width="120" height="35"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="Ghc-ir-K17" secondAttribute="trailing" constant="10" id="0aY-uG-XNX"/>
+                                            <constraint firstItem="Ghc-ir-K17" firstAttribute="leading" secondItem="4Ma-Y5-fHQ" secondAttribute="leading" constant="10" id="5Yr-Jl-FFx"/>
+                                            <constraint firstItem="Ghc-ir-K17" firstAttribute="top" secondItem="4Ma-Y5-fHQ" secondAttribute="top" constant="5" id="NL1-2w-MOV"/>
+                                            <constraint firstAttribute="bottom" secondItem="Ghc-ir-K17" secondAttribute="bottom" constant="5" id="XRY-uY-bNc"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zbh-Sw-F8T" userLabel="Restart Experience Button Icon">
+                                        <rect key="frame" x="360" y="3" width="44" height="59"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="59" id="WRf-Wk-TC7"/>
+                                            <constraint firstAttribute="width" constant="44" id="cJj-of-E5e"/>
+                                        </constraints>
+                                        <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="12"/>
+                                        <state key="normal" image="restart"/>
+                                        <state key="selected" image="restartPressed"/>
+                                        <state key="highlighted" image="restartPressed"/>
+                                        <connections>
+                                            <action selector="restartExperienceButtonAction:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Fd1-g9-Jpt"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="4Ma-Y5-fHQ" firstAttribute="leading" secondItem="BuI-7f-zWl" secondAttribute="leading" constant="10" id="73K-1T-8oA"/>
+                                    <constraint firstItem="Zbh-Sw-F8T" firstAttribute="centerY" secondItem="BuI-7f-zWl" secondAttribute="centerY" id="ChK-oH-hM3"/>
+                                    <constraint firstAttribute="bottom" secondItem="4Ma-Y5-fHQ" secondAttribute="bottom" constant="10" id="FHR-k1-R4p"/>
+                                    <constraint firstAttribute="trailing" secondItem="Zbh-Sw-F8T" secondAttribute="trailing" constant="10" id="d3F-Pe-IOa"/>
+                                    <constraint firstAttribute="height" constant="65" id="iNh-hC-6eJ"/>
+                                    <constraint firstItem="4Ma-Y5-fHQ" firstAttribute="top" secondItem="BuI-7f-zWl" secondAttribute="top" constant="10" id="nin-iK-PS2"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="BrB-h1-WRS" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="GsS-dJ-CKf"/>
-                            <constraint firstItem="BrB-h1-WRS" firstAttribute="bottom" secondItem="fQZ-KI-GVf" secondAttribute="bottom" id="VpT-BR-CcM"/>
-                            <constraint firstItem="BrB-h1-WRS" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="XyZ-9z-H8e"/>
-                            <constraint firstItem="BrB-h1-WRS" firstAttribute="top" secondItem="U0K-SW-4ec" secondAttribute="top" id="rJc-2c-zQA"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="fQZ-KI-GVf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="BuI-7f-zWl" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" id="GSc-Ie-G9J"/>
+                            <constraint firstItem="BrB-h1-WRS" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="GsS-dJ-CKf"/>
+                            <constraint firstItem="BrB-h1-WRS" firstAttribute="bottom" secondItem="U0K-SW-4ec" secondAttribute="bottom" id="VpT-BR-CcM"/>
+                            <constraint firstItem="BrB-h1-WRS" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="XyZ-9z-H8e"/>
+                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="BuI-7f-zWl" secondAttribute="trailing" id="faM-vC-wfY"/>
+                            <constraint firstItem="BrB-h1-WRS" firstAttribute="top" secondItem="U0K-SW-4ec" secondAttribute="top" id="rJc-2c-zQA"/>
+                            <constraint firstItem="BuI-7f-zWl" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="svP-4g-vWx"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="restartExperienceButton" destination="Zbh-Sw-F8T" id="RKm-Ji-vMu"/>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
+                        <outlet property="statusBar" destination="BuI-7f-zWl" id="dss-2N-JMH"/>
+                        <outlet property="statusLabel" destination="Ghc-ir-K17" id="Nlp-wb-wFX"/>
+                        <outlet property="statusView" destination="4Ma-Y5-fHQ" id="qfy-C3-SEL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-13" y="4"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="restart" width="20" height="20"/>
+        <image name="restartPressed" width="20" height="20"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

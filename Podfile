@@ -6,5 +6,6 @@ target 'ARAbacusConsultants' do
   use_frameworks!
 
   # Pods for ARAbacusConsultants
+  pod 'FocusNode'
 
 end
